@@ -12,6 +12,7 @@ info = #52BDEC
 warning = #FFA96B
 error = #F43736
 
+occupied = #33CC33
 
 
 [bar/main]
@@ -74,6 +75,7 @@ label-urgent-background = ${colors.info}
 
 label-occupied = %name%
 label-occupied-padding = 2
+label-occupied-foreground = ${colors.occupied}
 
 label-empty = %name%
 label-empty-padding = 2

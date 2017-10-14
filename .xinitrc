@@ -1,10 +1,15 @@
-#!/usr/bin/env zsh
-~/.monitors
+#!/bin/bash
+
+xrandr --output LVDS1 --mode 1440x900 --rate 60.0 --pos 0x0
+
 pulseaudio -D
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+[[ -f ~/.Xresources  ]] && xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
-feh --randomize --bg-fill ~/Pictures/wallpapers/*.png ~/Pictures/wallpapers/*.jpg
-export PATH=$HOME/bin:$PATH
-export SUDO_ASKPASS="/usr/local/bin/askpass"
-export QTWEBENGINE_DISABLE_SANDBOX=true
+
+~/wallpaper.sh
+
+# launches urxvtd daemon
+urxvtd -q -f -o &
+
 exec bspwm
