@@ -1,21 +1,18 @@
 # reload sxhkd shortcut definitions
-super + Escape
+super + shift + r
   pkill -USR1 -x sxhkd
 
 # exit bspwm
 super + alt + Escape
   bspc quit
 
-
 # open urxvt terminal
 super + Return
-  urxvtc
+  urxvt 
 
 # open rofi application launcher
-{super, alt} + space
-  rofi -show run
-
-
+super + {space, p}
+  rofi -show combi
 
 # close (kill) active node
 super +{_,shift + }q
@@ -26,8 +23,11 @@ super + {Left,Right}
   bspc desktop -f {prev,next}
 
 # select desktop 1..8
-super + {1-8}
-  bspc desktop -f {1-8}
+super + {1-5}
+  bspc desktop -f {1-5}
+
+super + alt + {1-5}
+  bspc desktop -f 1{1-5}
 
 # preselect from current node
 control + alt + {Up,Right,Down,Left}
@@ -39,7 +39,7 @@ control + alt + space
 
 # set preselect ratio from 10-90%
 control + alt + {1-9}
-  bspc node -o 0.{1-9}
+	bspc node -o 0.{1-9}
 
 # select node in given direction
 # move node in given direction
@@ -51,8 +51,11 @@ super + alt + {Left,Right}
   bspc node -d {prev,next} -f
 
 # move current node to desktop 1..8
-super + shift + {1-8}
-  bspc node -d {1-8} -f
+super + shift + {1-5}
+  bspc node -d {1-5} -f
+
+super + alt + shift + {1-5}
+  bspc node -d 1{1-5} -f
 
 # set `tiled` node state
 # toggle `pseudo_tiled` node state
@@ -69,5 +72,11 @@ super + r
   ~/wallpaper.sh
 
 # increase/decrease monitor backlight
-# alt + b + {Prior,Next}
-#   xbacklight -{inc,dec} 10
+alt + b + {Prior,Next}
+  xbacklight -{inc,dec} 10
+
+Print
+  scrot -m -z ~/Pictures/%Y-%m-%d-%T-screenshot.png
+
+super + Print
+  scrot -u -z ~/Pictures/%Y-%m-%d-%T-screenshot.png

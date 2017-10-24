@@ -12,17 +12,17 @@ info = #52BDEC
 warning = #FFA96B
 error = #F43736
 
-occupied = #33CC33
+occupied = #009933
 
 
 [bar/main]
-monitor = DP-2
+monitor = DP-0
 wm-restack = bspwm
 height = 26
 
 modules-left = bspwm
 modules-center = xwindow
-modules-right = cpu memory temperature volume date power
+modules-right = mpd cpu memory temperature volume date power
 
 font-0 = MaterialDesignIcons:size=11;2
 font-1 = Termsynu:size=9;2
@@ -31,25 +31,6 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 1
-
-
-
-[bar/laptop]
-wm-restack = bspwm
-height = 35
-
-modules-left = bspwm
-modules-center = xwindow
-modules-right = wireless-network backlight battery cpu memory temperature volume date power
-
-font-0 = MaterialDesignIcons:size=11;2
-font-1 = Termsynu:size=9;2
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 1
-
 
 
 [module/bspwm]
@@ -81,64 +62,52 @@ label-empty = %name%
 label-empty-padding = 2
 
 
-
 [module/xwindow]
 type = internal/xwindow
 
 label = %title:5:120:...%
 
+[module/mpd]
+type = internal/mpd
 
+host = 127.0.0.1
+port = 6600
 
-[module/wireless-network]
-type = internal/network
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+interval = 2
 
-interface = wlp3s0
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress> <label-time> <label-song>
+;format-playing = ${self.format-online}
+;format-paused = ${self.format-online}
+;format-stopped = ${self.format-online}
 
-label-connected =  %essid%  %signal%%
-label-disconnected =  %ifname%
+label-song = 𝄞 %artist% - %title%
 
+label-offline = 🎜 mpd is offline
 
-[module/backlight]
-type = internal/xbacklight
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = ⏪
+icon-seekf = ⏩
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
 
-enable-scroll = false
-label =  %percentage%%
-label-padding = 2
+; Used to display the state of random/repeat/repeatone
+; Only applies if <icon-[random|repeat|repeatone]> is used
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
 
-
-[module/battery]
-type = internal/battery
-
-full-at = 99
-
-battery = BAT0
-adapter = ADP1
-
-poll-interval = 3
-
-format-charging = <ramp-capacity><label-charging>
-format-discharging = <ramp-capacity><label-discharging>
-
-label-discharging = %percentage%%  %time%
-label-charging = %percentage%%  %time%
-
-ramp-capacity-padding = 2
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
-ramp-capacity-10 = 
-
-animation-charging-framerate = 1000
-
-
+; Only applies if <bar-progress> is used
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
 
 [module/cpu]
 type = internal/cpu
@@ -149,6 +118,14 @@ format-padding = 2
 label = CPU %percentage%%
 label-padding-left = 2
 
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
 
 
 [module/memory]
@@ -161,10 +138,9 @@ label = RAM %percentage_used%%
 label-padding-left = 2
 
 
-
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+hwmon-path = /sys/class/hwmon/hwmon2/temp1_input
 warn-temperature = 60
 
 format = <label>
@@ -175,7 +151,6 @@ format-warn-background = ${colors.error}
 
 label =  %temperature%
 label-warn = %temperature%
-
 
 
 [module/volume]
@@ -198,7 +173,6 @@ ramp-volume-2 = 
 ramp-volume-padding = 2
 
 
-
 [module/date]
 type = internal/date
 
@@ -215,7 +189,6 @@ format-prefix = 
 
 label = %date%%time%
 label-padding-right = 2
-
 
 
 [module/power]
@@ -245,3 +218,4 @@ menu-0-2 = 
 menu-0-2-background = ${colors.error}
 menu-0-2-exec = poweroff
 menu-0-2-padding = 2
+

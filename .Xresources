@@ -19,6 +19,10 @@
 *.color15:    #E6E6E6
 
 ! urxvt
+URxvt*transparent: true
+URxvt*shading: 10
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.perl-ext-common: default,matcher
 urxvt*loginShell: true
 urxvt*scrollBar: false
 urxvt*secondaryScroll: true
@@ -28,15 +32,17 @@ urxvt*urgentOnBell: true
 urxvt*borderLess: false
 urxvt*internalBorder: 15
 urxvt*urlLauncher: /usr/bin/xdg-open
+! urxvt*urlLauncher: /usr/bin/google-chrome-stable
 urxvt*matcher.button: 1
 urxvt*depth: 32
 urxvt*background: [88]#000000
 urxvt*font: xft:Inconsolata:pixelsize=12
 
 ! rofi
+rofi.show-icons: true
 rofi.color-enabled: true
-rofi.color-window: argb:BB000000, argb:0ffffff, argb:0ffffff
-rofi.color-normal: argb:0ffffff, #ffffff, argb:11000000, #68EFAD, #000000
+rofi.color-window: argb:BB000000, argb:0FFFFFFF, argb:0FFFFFFF
+rofi.color-normal: argb:0FFFFFFF, #ffffff, argb:11000000, #68EFAD, #000000
 rofi.color-active: #ffffff, #268bd2, #f0f0f0, argb:bb268bd2, #ffffff
 rofi.color-urgent: #ffffff, #dc322f, #f0f0f0, argb:bbdc322f, #ffffff
 rofi.location: 0
@@ -47,10 +53,6 @@ rofi.sidebar-mode: false
 rofi.fullscreen: false
 rofi.hmode: true
 rofi.modi: combi,run,window,ssh
-rofi.combi-modi: window,run,ssh
+rofi.combi-modi: window,run,drun,ssh
 rofi.lines: 20
 rofi.columns: 1
-
-! cursor
-Xcursor.theme: DMZ-Black
-Xcursor.size: 16

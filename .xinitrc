@@ -1,15 +1,12 @@
-#!/bin/bash
-
-xrandr --output LVDS1 --mode 1440x900 --rate 60.0 --pos 0x0
+xrandr --output DP-0 --primary --mode 1920x1080 --rate 60.0 --pos 0x0
+xrandr --output HDMI-0 --mode 1920x1080 --rate 60.0 --pos 1920x0
 
 pulseaudio -D
 
-[[ -f ~/.Xresources  ]] && xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
 xsetroot -cursor_name left_ptr
 
 ~/wallpaper.sh
-
-# launches urxvtd daemon
-urxvtd -q -f -o &
 
 exec bspwm
