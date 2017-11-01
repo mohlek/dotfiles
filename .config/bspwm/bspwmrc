@@ -26,3 +26,15 @@ sxhkd &
 polybar main -r &
 
 compton --config ~/.config/compton/compton.conf &
+
+xclip &
+
+if [[ -z "${DBUS_SESSION_BUS_ADDRESS}" ]]; then
+	# Export dbus env vars
+	eval `dbus-launch --sh-syntax --exit-with-session`
+	echo "D-Bus per-session daemon address is: ${DBUS_SESSION_BUS_ADDRESS}"
+fi
+
+# https://wiki.archlinux.org/index.php/GNOME/Keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
