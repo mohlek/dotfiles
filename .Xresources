@@ -36,7 +36,7 @@ urxvt*urlLauncher: /usr/bin/xdg-open
 urxvt*matcher.button: 1
 urxvt*depth: 32
 urxvt*background: [88]#000000
-urxvt*font: xft:Inconsolata:pixelsize=12
+urxvt*font: xft:Inconsolata:pixelsize=14
 
 ! rofi
 rofi.show-icons: true
